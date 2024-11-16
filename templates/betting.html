@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Prediction Game</title>
+    <link rel="stylesheet" href="">
+    <style>
+        /* Basic styling for the game */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .color-box {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+            border: 1px solid #856868;
+        }
+        .red { 
+            background-color: rgba(255, 25, 0, 0.873);
+            border-radius: 100px;
+
+         }
+        .green { background-color: green; border-radius: 100px; }
+        .blue { background-color: blue;border-radius: 100px; }
+        .result {
+            margin-top: 20px;
+        }
+        .wallet {
+            font-size: 20px;
+            margin-bottom: 20px;
+            
+        }
+        .history {
+            margin-top: 20px;
+        }
+        #timerDisplay {
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+        }
+        #currentTime {
+            font-size: 20px;
+            font-weight: bold;
+            color: blue;
+            margin-top: 20px;
+        }
+        .selected {
+            border: 5px solid yellow;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Color Prediction Game</h1>
+    </header>
+
+    <section>
+        <div class="wallet">
+            <p>Your Wallet Balance: $<span id="wallet">500</span></p>
+        </div>
+
+        <h2>Place Your Bets on a Color!</h2>
+        <form id="bettingForm">
+            <label for="amount">Bet Amount:</label>
+            <input type="number" name="amount" id="amount" required>
+            <br>
+            <label>Select a Color to Bet On:</label>
+            <div id="colorChoices">
+                <div class="color-box red" data-color="red"></div>
+                <div class="color-box green" data-color="green"></div>
+                <div class="color-box blue" data-color="blue"></div>
+            </div>
+            <input type="hidden" id="selectedColor" name="selectedColor">
+            <br>
+            <button type="submit">Place Bet</button>
+        </form>
+
+        <div class="result">
+            <p id="resultMessage"></p>
+            <p id="winningColorMessage"></p>
+        </div>
+
+        <div class="history">
+            <h3>Winning Color History</h3>
+            <ul id="winningHistory"></ul>
+        </div>
+        
+        <div id="timer">
+            Next Color Change in: <span id="timerDisplay">30</span> seconds
+        </div>
+
+        <div id="currentTime">
+            Current Time: <span id="timeDisplay"></span>
+        </div>
+    </section>
+
+    <footer>
+        <p></p>
+    </footer>
+
+    <script>
+        let walletAmount = 500;
+        let winningColor = '';
+        let winningColorsHistory = [];
+        let timer;
+        let betPlaced = false;
+        const startId = 1000;
+
+        const colorChoices = document.querySelectorAll('.color-box');
+        let selectedColor = '';
+        const walletDisplay = document.getElementById('wallet');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const winningHistoryList = document.getElementById('winningHistory');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const resultMessage = document.getElementById('resultMessage');
+        const placeBetButton = document.querySelector('button');
+
+        // Timer setup
+        function startTimer() {
+            let timeLeft = 30;
+            timerDisplay.textContent = timeLeft;
+            betPlaced = false;
+
+            timer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    determineWinningColor();
+                    startTimer();
+                }
+            }, 1000);
+        }
+
+        function determineWinningColor() {
+            const colors = ['red', 'green', 'blue'];
+            winningColor = colors[Math.floor(Math.random() * colors.length)];
+
+            const historyId = startId + winningColorsHistory.length;
+            winningColorsHistory.push({ color: winningColor, id: historyId });
+            updateWinningHistory();
+        }
+
+        function updateWinningHistory() {
+    const li = document.createElement('li');
+    const lastHistory = winningColorsHistory[winningColorsHistory.length - 1];
+    li.textContent = `ID: ${lastHistory.id}, Color: ${lastHistory.color}`;
+    
+    // Prepend the new history entry at the top
+    winningHistoryList.insertBefore(li, winningHistoryList.firstChild);
+}
+
+
+        colorChoices.forEach(box => {
+            box.addEventListener('click', function() {
+                colorChoices.forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedColor = this.getAttribute('data-color');
+                document.getElementById('selectedColor').value = selectedColor;
+            });
+        });
+
+        document.getElementById('bettingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            if (!selectedColor) {
+                alert('Please select a color to place your bet!');
+                return;
+            }
+
+            const betAmount = parseFloat(document.getElementById('amount').value);
+
+            if (betAmount <= 0) {
+                alert('Please enter a valid bet amount!');
+                return;
+            }
+
+            if (betAmount > walletAmount) {
+                alert('Insufficient balance!');
+                return;
+            }
+
+            if (betPlaced) {
+                alert('Bet already placed! Wait for next round.');
+                return;
+            }
+
+            walletAmount -= betAmount;
+            walletDisplay.textContent = walletAmount.toFixed(2);
+            resultMessage.textContent = "Bet placed! Waiting for result...";
+            betPlaced = true;
+
+            setTimeout(() => {
+                const winningColorMessage = document.getElementById('winningColorMessage');
+
+                if (selectedColor === winningColor) {
+                    const winnings = betAmount * 2;
+                    walletAmount += winnings;
+                    resultMessage.textContent = `Congratulations! The winning color is ${winningColor}. You won $${winnings.toFixed(2)}!`;
+                } else {
+                    resultMessage.textContent = `Sorry, the winning color is ${winningColor}. You lost $${betAmount.toFixed(2)}.`;
+                }
+
+                walletDisplay.textContent = walletAmount.toFixed(2);
+                winningColorMessage.textContent = `You bet on ${selectedColor}.`;
+
+                if (walletAmount <= 0) {
+                    alert("No more balance! Resetting wallet for testing purposes.");
+                    walletAmount = 500;
+                    walletDisplay.textContent = walletAmount.toFixed(2);
+                }
+            }, 30000);
+        });
+
+        function updateCurrentTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateCurrentTime, 1000);
+        updateCurrentTime();
+
+        startTimer();
+    </script>
+</body>
+</html>

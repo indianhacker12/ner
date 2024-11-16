@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Account - Betting Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 2em;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .account-summary {
+            background-color: white;
+            padding: 1em;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .account-summary h2 {
+            color: #007bff;
+        }
+
+        .account-summary p {
+            font-size: 1.1em;
+        }
+
+        .account-summary button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 0.5em 0;
+        }
+
+        .account-summary button:hover {
+            background-color: #0056b3;
+        }
+
+        .betting-history {
+            margin-top: 2em;
+            background-color: white;
+            padding: 1em;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .betting-history h3 {
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>User Account</h1>
+        <nav>
+            <ul>
+                <li><a href="/frontend/templates/index.html">Home</a></li>
+                <li><a href="/frontend/templates/about.html">About</a></li>
+                <li><a href="/frontend/templates/betting.html">Trending</a></li>
+                <li><a href="/frontend/templates/contact.html">Contact</a></li>
+                <li><a href="/frontend/templates/pormo.html">Promotions</a></li>
+                <li><a href="/frontend/templates/user.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Account Summary -->
+    <section>
+        <div class="account-summary">
+            <h2>Welcome, [Username]!</h2>
+            <p><strong>Balance:</strong> ₹5,000</p>
+            <p><strong>Total Winnings:</strong> ₹25,000</p>
+            <button onclick="location.href='/betting'">Place New Bet</button>
+            <button onclick="location.href='/withdraw'">Withdraw Funds</button>
+            <button onclick="location.href='/promotion'">View Promotions</button>
+        </div>
+
+        <!-- Betting History -->
+        <div class="betting-history">
+            <h3>Betting History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Game</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Winnings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Teen Patti</td>
+                        <td>10-Oct-2024</td>
+                        <td>₹500</td>
+                        <td>Won</td>
+                        <td>₹1,000</td>
+                    </tr>
+                    <tr>
+                        <td>Color Trading</td>
+                        <td>09-Oct-2024</td>
+                        <td>₹200</td>
+                        <td>Lost</td>
+                        <td>₹0</td>
+                    </tr>
+                    <tr>
+                        <td>Sports</td>
+                        <td>08-Oct-2024</td>
+                        <td>₹1,000</td>
+                        <td>Won</td>
+                        <td>₹2,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Betting Website. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #0bfad6;
+    color: #333;
+}
+
+header {
+    background-color: #da0b0b;
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    background-color: #9c1717;
+    border-radius:50px ;
+   
+}
+
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #f39c12;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+main .h2{
+    color: #ce0d0d;
+}
+
+.betting-games {
+    text-align: center;
+}
+
+.betting-games h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #333;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    background-size: cover;
+    background-color: #f39d12ad;
+    background-position: center;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(202, 56, 56, 0.444);
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: rgb(18, 244, 229);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Background images for each game */
+.dice {
+    background-image: url('/frontend/static/img/dice.png');
+}
+
+.keno {
+    background-image: url('/frontend/static/img/keno.png');
+}
+
+.bingo {
+    background-image: url('/frontend/static/img/bingo.png');
+}
+
+.horse {
+    background-image: url('/frontend/static/img/horse.png') ;
+    
+
+}
+
+.lottery {
+    background-image: url('/frontend/static/img/lottery.png');
+}
+
+.fantasy {
+    background-image: url('/frontend/static/img/virt.png');
+}
+
+.casino {
+    background-image: url('/frontend/static/img/casi.png');
+}
+
+.sports {
+    background-image: url('/frontend/static/img/sport.png');
+}
+
+.teen-patti {
+    background-image: url('/frontend/static/img/teen.png');
+}
+.espot{
+    background-image: url('/frontend/static/img//esport.png');
+}
+.aviater{
+    background-image: url('/frontend/static/img/aviator.png');
+
+    
+}
+.Demo{
+    background-image: url('/frontend/static/img/teen.png');
+}
+footer {
+    background-color: #f50909;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

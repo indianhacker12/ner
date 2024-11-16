@@ -1,0 +1,104 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+section {
+    padding: 2em;
+    text-align: center;
+}
+
+h2 {
+    color: #007bff; /* Header color */
+}
+
+form {
+    background-color: #fff; /* White background for forms */
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    max-width: 400px;
+    margin: 0 auto; /* Center form */
+}
+
+label {
+    display: block;
+    margin: 1em 0 0.5em; /* Spacing for labels */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin: 0.5em 0 1em; /* Spacing for inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+input[type="submit"] {
+    background-color: #007bff; /* Button color */
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+footer {
+    background-color: #007bff; /* Footer color */
+    color: white;
+    padding: 1em;
+    text-align: center;
+    position: relative; /* Changed to relative */
+    bottom: 0;
+    width: 100%;
+    margin-top: 2em; /* Spacing between footer and content */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    nav ul li {
+        display: block; /* Stack navigation items */
+        margin: 0.5em 0; /* Spacing between stacked items */
+    }
+}
