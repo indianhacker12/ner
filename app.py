@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from twilio.rest import Client
-import os
-import random
+
 
 app = Flask(__name__)
 
